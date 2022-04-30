@@ -1,6 +1,6 @@
-import 'package:nameof/nameof.dart';
+import 'package:nameof/builder.dart';
 
 void main() {
-  var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
+  // var awesome = Awesome();
+  // print('awesome: ${awesome.isAwesome}');
 }
