@@ -6,18 +6,25 @@ class ClassVisitor extends SimpleElementVisitor<void> {
   final fields = <String>{};
   final functions = <String>{};
 
-  @override
-  void visitClassElement(ClassElement element) {
-    className = element.name;
-  }
+  ClassVisitor(this.className);
+
+  // @override
+  // void visitClassElement(ClassElement element) {
+  //   className = element.name;
+  // }
 
   @override
   void visitFieldElement(FieldElement element) {
     fields.add(element.name);
   }
 
+  // @override
+  // void visitFunctionElement(FunctionElement element) {
+  //   functions.add(element.name);
+  // }
+
   @override
-  void visitFunctionElement(FunctionElement element) {
+  void visitMethodElement(MethodElement element) {
     functions.add(element.name);
   }
 }

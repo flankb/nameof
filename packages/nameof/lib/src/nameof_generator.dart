@@ -5,6 +5,24 @@ import 'package:source_gen/source_gen.dart';
 
 import 'class_visitor.dart';
 
+extension StringExtension on String {
+  String capitalize() {
+    if (this == '') return '';
+
+    return "${this[0].toUpperCase()}${substring(1)}";
+  }
+
+  String privatize() {
+    if (this == '') return '';
+
+    if (this[0] == '_') {
+      return "Private${substring(1).capitalize()}";
+    }
+
+    return this;
+  }
+}
+
 class NameofGenerator extends GeneratorForAnnotation<Nameof> {
   @override
   String generateForAnnotatedElement(
@@ -13,9 +31,8 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
       throw Exception("This is not a class!");
     }
 
-    final visitor = ClassVisitor();
+    final visitor = ClassVisitor(element.name ?? 'NoName');
     element.visitChildren(visitor);
-
     final code = _generateNames(visitor);
 
     return code;
@@ -31,17 +48,17 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
 
     final className = 'final String className = \'${visitor.className}\';';
 
-    final fieldNames =
-        visitor.fields.map((f) => 'final String field$f = \'$f\'');
+    final fieldNames = visitor.fields
+        .map((f) => 'final String field${f.capitalize()} = \'$f\';');
 
-    final functionNames =
-        visitor.fields.map((func) => 'final String function$func = \'$func\'');
+    final functionNames = visitor.functions.map((func) =>
+        'final String function${func.capitalize().privatize()} = \'$func\';');
 
     buffer.writeln(className);
     buffer.writeln();
-    buffer.writeln(fieldNames);
+    buffer.writeln(_join(fieldNames));
     buffer.writeln();
-    buffer.writeln(functionNames);
+    buffer.writeln(_join(functionNames));
 
     buffer.writeln('}');
 
@@ -49,4 +66,6 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
 
     return buffer.toString();
   }
+
+  String _join(Iterable<String> codeArray) => codeArray.join('\n');
 }
