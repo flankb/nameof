@@ -16,5 +16,6 @@ dependencies:
 dev_dependencies:
   build_runner:
   build_test:
+  source_gen_test: ^1.0.2
   lints: ^1.0.0
   test: ^1.16.0
