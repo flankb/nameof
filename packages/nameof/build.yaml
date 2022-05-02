@@ -3,6 +3,11 @@ targets:
     builders:
       nameof:
         enabled: true
+        generate_for:
+          exclude:
+            - test
+          include:
+            - test/integration/*
 
 builders:
   nameof:
