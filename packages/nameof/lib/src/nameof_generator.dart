@@ -7,15 +7,13 @@ import 'class_visitor.dart';
 
 extension StringExtension on String {
   String capitalize() {
-    if (this == '') return '';
+    if (isEmpty) return '';
 
     return "${this[0].toUpperCase()}${substring(1)}";
   }
 
   String privatize() {
-    if (this == '') return '';
-
-    if (this[0] == '_') {
+    if (isNotEmpty && this[0] == '_') {
       return "Private${substring(1).capitalize()}";
     }
 
@@ -28,7 +26,7 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
     if (element.kind != ElementKind.CLASS) {
-      throw Exception("This is not a class!");
+      throw UnsupportedError("This is not a class!");
     }
 
     final visitor = ClassVisitor(element.name ?? 'NoName');
