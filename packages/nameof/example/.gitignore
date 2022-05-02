@@ -4,3 +4,6 @@
 
 # Conventional directory for build output.
 build/
+
+# Ignore generated files
+*.nameof.dart
