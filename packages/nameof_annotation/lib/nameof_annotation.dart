@@ -8,4 +8,10 @@ class Nameof {
   const Nameof();
 }
 
+///  Annotation for ignore inner members of class
+class NameofIgnore {
+  const NameofIgnore();
+}
+
 const nameof = Nameof();
+const nameofIgnore = NameofIgnore();
