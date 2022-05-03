@@ -8,13 +8,21 @@ class ClassVisitor extends SimpleElementVisitor<void> {
 
   ClassVisitor(this.className);
 
+  @override
+  void visitClassElement(ClassElement element) {
+    className = element.name;
+  }
+
   // @override
-  // void visitClassElement(ClassElement element) {
-  //   className = element.name;
+  // visitConstructorElement(ConstructorElement element) {
+  //   className = element.type.returnType.getDisplayString(withNullability: false);
+  //   return super.visitConstructorElement(element);
   // }
 
   @override
   void visitFieldElement(FieldElement element) {
+    // Getters and Setters included
+
     fields.add(element.name);
   }
 
