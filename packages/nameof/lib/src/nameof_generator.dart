@@ -1,25 +1,11 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
+import 'package:nameof/src/util/element_extensions.dart';
+import 'package:nameof/src/util/string_extensions.dart';
 import 'package:nameof_annotation/nameof_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
-import 'class_visitor.dart';
-
-extension StringExtension on String {
-  String capitalize() {
-    if (isEmpty) return '';
-
-    return "${this[0].toUpperCase()}${substring(1)}";
-  }
-
-  String privatize() {
-    if (isNotEmpty && this[0] == '_') {
-      return "Private${substring(1).capitalize()}";
-    }
-
-    return this;
-  }
-}
+import 'nameof_visitor.dart';
 
 class NameofGenerator extends GeneratorForAnnotation<Nameof> {
   @override
@@ -29,14 +15,25 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
       throw UnsupportedError("This is not a class!");
     }
 
-    final visitor = ClassVisitor(element.name ?? 'NoName');
+    /// Получить значение аннотации
+    final behaviorValue =
+        annotation.objectValue.getField('behaviour')?.toStringValue();
+    //final behaviorValue = element.getAnnotation(Nameof)?.getField('behaviour')?.toStringValue();
+
+    // По базовым классам можно тоже пройтись визитором
+
+    final annotatedElements =
+        (element as ClassElement).fields.where((f) => f.hasAnnotation(Nameof));
+    //=============
+
+    final visitor = NameofVisitor(element.name ?? 'NoName');
     element.visitChildren(visitor);
     final code = _generateNames(visitor);
 
     return code;
   }
 
-  String _generateNames(ClassVisitor visitor) {
+  String _generateNames(NameofVisitor visitor) {
     StringBuffer buffer = StringBuffer();
 
     final classContainerName = '_\$Nameof${visitor.className}';
@@ -54,9 +51,9 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
 
     buffer.writeln(className);
     buffer.writeln();
-    buffer.writeln(_join(fieldNames));
+    buffer.writeln(join(fieldNames));
     buffer.writeln();
-    buffer.writeln(_join(functionNames));
+    buffer.writeln(join(functionNames));
 
     buffer.writeln('}');
 
@@ -64,6 +61,4 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
 
     return buffer.toString();
   }
-
-  String _join(Iterable<String> codeArray) => codeArray.join('\n');
 }
