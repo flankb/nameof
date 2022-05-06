@@ -5,13 +5,37 @@ library nameof_annotation;
 
 /// Annotation for generate names for code entities
 class Nameof {
-  const Nameof();
+  final CoverageBehaviour coverageBehaviour;
+
+  const Nameof({this.coverageBehaviour = CoverageBehaviour.includeImplicit});
 }
 
-///  Annotation for ignore inner members of class
+///  Annotation for ignore inner elements of class
 class NameofIgnore {
   const NameofIgnore();
 }
 
+class NameofKey {
+  final String? name;
+
+  const NameofKey({this.name});
+}
+
 const nameof = Nameof();
+const nameofKey = NameofKey();
 const nameofIgnore = NameofIgnore();
+
+enum NameofScope {
+  onlyPublic,
+
+  all
+}
+
+/// Behaviour for generating nameof code
+enum CoverageBehaviour {
+  /// Include all elements, even not marked with annotation [NameofKey]
+  includeImplicit,
+
+  /// Include elements only tagged with annotation [NameofKey]
+  excludeImplicit
+}
