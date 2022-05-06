@@ -5,6 +5,7 @@ import 'package:nameof/src/util/string_extensions.dart';
 import 'package:nameof_annotation/nameof_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
+import 'model/options.dart';
 import 'nameof_visitor.dart';
 
 class NameofGenerator extends GeneratorForAnnotation<Nameof> {
@@ -16,14 +17,20 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
     }
 
     /// Получить значение аннотации
-    final behaviorValue =
-        annotation.objectValue.getField('behaviour')?.toStringValue();
+    final behaviour = CoverageBehaviour.values.firstWhere((element) =>
+        element.toString() ==
+        annotation.objectValue.getField('coverageBehaviour')?.toStringValue());
+
+    final options =
+        NameofOptions(coverage: behaviour, scope: NameofScope.onlyPublic);
+
+    //annotation.objectValue.getField('coverageBehaviour')?.toStringValue();
     //final behaviorValue = element.getAnnotation(Nameof)?.getField('behaviour')?.toStringValue();
 
     // По базовым классам можно тоже пройтись визитором
 
-    final annotatedElements =
-        (element as ClassElement).fields.where((f) => f.hasAnnotation(Nameof));
+    // final annotatedElements =
+    //     (element as ClassElement).fields.where((f) => f.hasAnnotation(Nameof));
     //=============
 
     final visitor = NameofVisitor(element.name ?? 'NoName');
@@ -43,11 +50,13 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
 
     final className = 'final String className = \'${visitor.className}\';';
 
-    final fieldNames = visitor.fields
+    final fieldNames = visitor.fields.values
+        .map((e) => e.name)
         .map((f) => 'final String field${f.capitalize()} = \'$f\';');
 
-    final functionNames = visitor.functions.map((func) =>
-        'final String function${func.capitalize().privatize()} = \'$func\';');
+    final functionNames = visitor.functions.values.map((e) => e.name).map(
+        (func) =>
+            'final String function${func.capitalize().privatize()} = \'$func\';');
 
     buffer.writeln(className);
     buffer.writeln();
