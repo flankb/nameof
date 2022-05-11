@@ -6,11 +6,17 @@ extension StringExtension on String {
   }
 
   String privatize() {
+    // TODO При переопределении имени на начинающееся с '_'
+    // работает неверно (подставляет префикс Private если элемент публичный)
     if (isNotEmpty && this[0] == '_') {
       return "Private${substring(1).capitalize()}";
     }
 
     return this;
+  }
+
+  String cleanize() {
+    return replaceAll('=', '');
   }
 }
 
