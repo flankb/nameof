@@ -6,11 +6,19 @@ import 'model/options.dart';
 import 'model/property_info.dart';
 import 'nameof_visitor.dart';
 
+/// Code lines builder
 class NameofCodeProcessor {
+  /// Build options
   final NameofOptions options;
+
+  /// Code info
   final NameofVisitor visitor;
 
   NameofCodeProcessor(this.options, this.visitor);
+
+  String process() {
+    return _generateNames(visitor);
+  }
 
   String _generateNames(NameofVisitor visitor) {
     StringBuffer buffer = StringBuffer();
@@ -22,52 +30,51 @@ class NameofCodeProcessor {
 
     final className = 'final String className = \'${visitor.className}\';';
 
-    final constructorNames = getFilteredNames(visitor.constructors.values)
-        .map((e) => e.name)
-        .map((f) =>
-            'final String constructor${f.capitalize().privatize()} = \'$f\';');
+    final constructorNames =
+        _getCodeParts('constructor', visitor.constructors.values);
 
-    final fieldNames = getFilteredNames(visitor.fields.values)
-        .map((e) => e.name)
-        .map(
-            (f) => 'final String field${f.capitalize().privatize()} = \'$f\';');
+    final fieldNames = _getCodeParts('field', visitor.fields.values);
 
-    final functionNames = getFilteredNames(visitor.functions.values)
-        .map((e) => e.name)
-        .map((func) =>
-            'final String function${func.capitalize().privatize()} = \'$func\';');
+    final functionNames = _getCodeParts('function', visitor.functions.values);
 
-    final propertyNames = getFilteredNames(visitor.properties.values).map((prop) =>
+    final propertyNames = _getFilteredNames(visitor.properties.values).map((prop) =>
         'final String property${(prop as PropertyInfo).propertyPrefix}${prop.name.capitalize().privatize()} = \'${prop.name}\';');
+
+    void writeCode(Iterable<String> codeLines) {
+      if (codeLines.isNotEmpty) {
+        buffer.writeln();
+        buffer.writeln(join(codeLines));
+      }
+    }
 
     buffer.writeln(className);
 
-    buffer.writeln();
-    buffer.writeln(join(constructorNames));
-
-    buffer.writeln();
-    buffer.writeln(join(fieldNames));
-
-    buffer.writeln();
-    buffer.writeln(join(propertyNames));
-
-    buffer.writeln();
-    buffer.writeln(join(functionNames));
+    for (var codeLines in [
+      constructorNames,
+      fieldNames,
+      propertyNames,
+      functionNames
+    ]) {
+      writeCode(codeLines);
+    }
 
     buffer.writeln('}');
 
-    buffer.writeln('const nameof${visitor.className} = $classContainerName();');
+    buffer.writeln(
+        'const nameof${visitor.className.capitalize()} = $classContainerName();');
 
     return buffer.toString();
   }
 
-  Iterable<ElementInfo> getFilteredNames(Iterable<ElementInfo> infos) {
+  Iterable<ElementInfo> _getFilteredNames(Iterable<ElementInfo> infos) {
     return options.coverage == CoverageBehaviour.includeImplicit
         ? infos.map((e) => e)
         : infos.where((element) => element.isAnnotated).map((e) => e);
   }
 
-  String process() {
-    return _generateNames(visitor);
+  Iterable<String> _getCodeParts(
+      String elementType, Iterable<ElementInfo> elements) {
+    return _getFilteredNames(elements).map((element) =>
+        'final String $elementType${element.scopePrefix}${element.name.capitalize().privatize()} = \'${element.name}\';');
   }
 }
