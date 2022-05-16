@@ -10,4 +10,6 @@ class ElementInfo {
       required this.isPrivate,
       required this.isAnnotated,
       this.ownerName});
+
+  String get scopePrefix => isPrivate ? 'Private' : '';
 }
