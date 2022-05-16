@@ -5,11 +5,10 @@ extension StringExtension on String {
     return "${this[0].toUpperCase()}${substring(1)}";
   }
 
+  /// Remove underscore
   String privatize() {
-    // TODO При переопределении имени на начинающееся с '_'
-    // работает неверно (подставляет префикс Private если элемент публичный)
     if (isNotEmpty && this[0] == '_') {
-      return "Private${substring(1).capitalize()}";
+      return substring(1).capitalize();
     }
 
     return this;
