@@ -67,9 +67,14 @@ class NameofCodeProcessor {
   }
 
   Iterable<ElementInfo> _getFilteredNames(Iterable<ElementInfo> infos) {
-    return options.coverage == CoverageBehaviour.includeImplicit
-        ? infos.map((e) => e)
-        : infos.where((element) => element.isAnnotated).map((e) => e);
+    Iterable<ElementInfo> result =
+        options.coverage == CoverageBehaviour.includeImplicit
+            ? infos.map((e) => e)
+            : infos.where((element) => element.isAnnotated).map((e) => e);
+
+    return options.scope == NameofScope.onlyPublic
+        ? result.where((element) => !element.isPrivate)
+        : result;
   }
 
   Iterable<String> _getCodeParts(
