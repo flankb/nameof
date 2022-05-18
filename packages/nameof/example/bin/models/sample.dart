@@ -14,18 +14,31 @@ class BaseClass {
   BaseClass(this.price);
 }
 
-@nameof
+@Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
 class Sample extends BaseClass with VinilMixin {
   final String name;
+  String _behind = '';
 
-  @nameof
+  int length;
+
+  factory Sample.mega() {
+    return Sample('MEGA', 342, 12);
+  }
+
   final int id;
 
+  @NameofKey(name: '_abracadabra')
   String get getColor => 'red';
 
   set setColor(int repr) {}
 
-  Sample(this.name, this.id) : super(0);
+  String get behind => _behind;
+
+  set behind(String val) {
+    _behind = val;
+  }
+
+  Sample(this.name, this.id, this.length) : super(0);
 
   void _calculateAge() {}
 
