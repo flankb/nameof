@@ -6,10 +6,11 @@ class _$NameofModelTest {
   const _$NameofModelTest();
   final String className = 'ModelTest';
 
+  final String constructor = '';
+
   final String fieldName = 'name';
   final String fieldId = 'id';
 
-  final String functionPrivateCalculateAge = '_calculateAge';
   final String functionBuildValue = 'buildValue';
 }
 
@@ -28,4 +29,49 @@ class ModelTest {
     _calculateAge();
     return 0;
   }
+}
+
+@ShouldGenerate(r'''
+class _$NameofModelTest2 {
+  const _$NameofModelTest2();
+  final String className = 'ModelTest2';
+
+  final String constructor = '';
+
+  final String fieldName = 'name';
+  final String fieldId = 'id';
+
+  final String propertyGetDescription = 'description';
+}
+
+const nameofModelTest2 = _$NameofModelTest2();
+''')
+@nameof
+class ModelTest2 {
+  final String name;
+  final int id;
+
+  @NameofKey()
+  String get description => 'Description';
+
+  ModelTest2(this.name, this.id);
+}
+
+@ShouldGenerate(r'''
+class _$NameofMixinTest3 {
+  const _$NameofMixinTest3();
+  final String className = 'MixinTest3';
+
+  final String fieldStartUnixEpoch = '_startUnixEpoch';
+}
+
+const nameofMixinTest3 = _$NameofMixinTest3();
+''')
+@Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
+mixin MixinTest3 {
+  final String name = 'Mixin';
+  final int id = 0;
+
+  @NameofKey(name: '_startUnixEpoch')
+  final year = 1969;
 }
