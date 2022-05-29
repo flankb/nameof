@@ -22,7 +22,11 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
     final options =
         NameofOptions(coverage: behaviour, scope: NameofScope.onlyPublic);
 
-    final visitor = NameofVisitor(element.name ?? 'NoName');
+    final visitor = NameofVisitor(element.name ??
+        () {
+          throw UnsupportedError(
+              'Class or mixin element does not have a name!');
+        }());
     element.visitChildren(visitor);
 
     final code = NameofCodeProcessor(options, visitor).process();
