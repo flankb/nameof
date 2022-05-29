@@ -18,21 +18,8 @@ class NameofVisitor extends SimpleElementVisitor<void> {
   NameofVisitor(this.className);
 
   @override
-  void visitClassElement(ClassElement element) {
-    className = element.name;
-  }
-
-  @override
   void visitConstructorElement(ConstructorElement element) {
-    // className = element.type.returnType.getDisplayString(withNullability: false);
-    // return super.visitConstructorElement(element);
-
     constructors[element.name] = _getElementInfo(element);
-
-    // for (var item in element.parameters) {
-    //   constructorParams['${element.name}_${item.name}'] =
-    //       _getElementInfo(element, ownerName: element.name);
-    // }
   }
 
   @override
@@ -56,11 +43,6 @@ class NameofVisitor extends SimpleElementVisitor<void> {
         isSetter: element.isSetter);
   }
 
-  // @override
-  // void visitFunctionElement(FunctionElement element) {
-  //   functions.add(element.name);
-  // }
-
   @override
   void visitMethodElement(MethodElement element) {
     functions[element.name] = _getElementInfo(element);
@@ -74,6 +56,7 @@ class NameofVisitor extends SimpleElementVisitor<void> {
 
     final isPrivate = element.name!.startsWith('_');
     final isAnnotated = element.hasAnnotation(NameofKey);
+    final isIgnore = element.hasAnnotation(NameofIgnore);
 
     String? name = (isAnnotated
             ? element
@@ -82,12 +65,13 @@ class NameofVisitor extends SimpleElementVisitor<void> {
                     ?.toStringValue() ??
                 element.name
             : element.name)!
-        .cleanize();
+        .cleanFromServiceSymbols();
 
     return ElementInfo(
         name: name,
         isPrivate: isPrivate,
         isAnnotated: isAnnotated,
-        ownerName: ownerName);
+        ownerName: ownerName,
+        isIgnore: isIgnore);
   }
 }

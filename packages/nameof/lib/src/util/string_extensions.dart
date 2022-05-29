@@ -14,7 +14,8 @@ extension StringExtension on String {
     return this;
   }
 
-  String cleanize() {
+  /// Clean string representation of element from service symbols
+  String cleanFromServiceSymbols() {
     return replaceAll('=', '');
   }
 }
