@@ -39,3 +39,18 @@ mixin MixinOne {
   @NameofKey(name: 'hameleon')
   String get nameVinage => 'Hairs';
 }
+
+@nameof
+class Cinema {
+  String street;
+  int value;
+
+  @nameofIgnore
+  int rooms;
+
+  Cinema({
+    required this.street,
+    required this.value,
+    required this.rooms,
+  });
+}

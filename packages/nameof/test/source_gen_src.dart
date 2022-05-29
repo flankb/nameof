@@ -75,3 +75,31 @@ mixin MixinTest3 {
   @NameofKey(name: '_startUnixEpoch')
   final year = 1969;
 }
+
+@ShouldGenerate(r'''
+class _$NameofCinema {
+  const _$NameofCinema();
+  final String className = 'Cinema';
+
+  final String constructor = '';
+
+  final String fieldStreet = 'street';
+  final String fieldValue = 'value';
+}
+
+const nameofCinema = _$NameofCinema();
+''')
+@nameof
+class Cinema {
+  String street;
+  int value;
+
+  @nameofIgnore
+  int rooms;
+
+  Cinema({
+    required this.street,
+    required this.value,
+    required this.rooms,
+  });
+}
