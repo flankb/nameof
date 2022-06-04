@@ -41,7 +41,7 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
         .firstWhereOrNull((cb) => coverageConfigString == cb.toShortString());
 
     final coverageAnnotation = enumValueForDartObject(
-      annotation.read('coverageBehaviour').objectValue,
+      annotation.read('coverageBehaviour'),
       CoverageBehaviour.values,
     );
 
@@ -53,8 +53,11 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
   }
 
   T? enumValueForDartObject<T>(
-    dynamic source,
+    ConstantReader reader,
     List<T> items,
-  ) =>
-      source.isNull ? null : items[source.getField('index')!.toIntValue()!];
+  ) {
+    return reader.isNull
+        ? null
+        : items[reader.objectValue.getField('index')!.toIntValue()!];
+  }
 }
