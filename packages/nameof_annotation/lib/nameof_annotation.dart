@@ -5,9 +5,9 @@ library nameof_annotation;
 
 /// Annotation for generate names for code entities
 class Nameof {
-  final CoverageBehaviour coverageBehaviour;
+  final CoverageBehaviour? coverageBehaviour;
 
-  const Nameof({this.coverageBehaviour = CoverageBehaviour.includeImplicit});
+  const Nameof({this.coverageBehaviour});
 }
 
 ///  Annotation for ignore inner elements of class

@@ -8,5 +8,5 @@ Future<void> main() async {
 
   initializeBuildLogTracking();
 
-  testAnnotatedElements<Nameof>(reader, NameofGenerator());
+  testAnnotatedElements<Nameof>(reader, NameofGenerator({}));
 }
