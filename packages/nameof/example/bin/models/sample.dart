@@ -7,11 +7,25 @@ mixin VinilMixin {
   final int vinilColor = 124;
 }
 
-@nameof
+@Nameof()
 class BaseClass {
   final double price;
 
   BaseClass(this.price);
+}
+
+@nameof
+class Car {
+  final double price;
+  final double weigth;
+
+  final int year;
+  final String model;
+
+  Car(this.price, this.weigth, this.year, this.model);
+
+  Car.sedan(double price, double weigth, int year)
+      : this(price, weigth, year, 'Sedan');
 }
 
 @Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
