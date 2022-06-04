@@ -25,9 +25,12 @@ const nameof = Nameof();
 const nameofKey = NameofKey();
 const nameofIgnore = NameofIgnore();
 
+/// Rule for including inner elements
 enum NameofScope {
+  /// Include only public members (fields, methods, etc..)
   onlyPublic,
 
+  /// Include public and private elements
   all
 }
 
