@@ -75,6 +75,8 @@ part 'my_file.nameof.dart';
 
 ## Using Nameof
 
+### Simple usage
+
 For example we have a class `Car`. For names generation of this class you need to tell generator some instructions with `nameof` annotation:
 
 ```dart
@@ -98,27 +100,114 @@ Then you need to run generator [Run the generator](#run-the-generator)
 It will generate next code:
 
 ```dart
-class _$NameofCar {
-  const _$NameofCar();
-  final String className = 'Car';
+/// Container for names of elements belonging to the [Car] class
+abstract class NameofCar {
+  static const String className = 'Car';
 
-  final String constructor = '';
-  final String constructorSedan = 'sedan';
+  static const String constructor = '';
+  static const String constructorSedan = 'sedan';
 
-  final String fieldPrice = 'price';
-  final String fieldWeigth = 'weigth';
-  final String fieldYear = 'year';
-  final String fieldModel = 'model';
+  static const String fieldPrice = 'price';
+  static const String fieldWeigth = 'weigth';
+  static const String fieldYear = 'year';
+  static const String fieldModel = 'model';
 }
-
-const nameofCar = _$NameofCar();
 ```
 
 Then use it in your code:
 ```dart
-print(nameofCar.fieldPrice);
+print(NameofCar.fieldPrice);
 ```
 
 It is simple!
 
 Also you may to use `nameof` annotation for abstract *classes* and *mixins*.
+
+### Models coverage
+
+You can have very precision setting of coverage of model's members with use coverage settings and `@NameofIgnore` annotation. For example two next configurations will lead to one output.
+- First configuration:
+```dart
+@Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
+class Itinerary {
+  final double longStart;
+  final double latStart;
+
+  final double longEnd;
+  final double latEnd;
+
+  @nameofKey
+  final String name;
+
+  @nameofKey
+  final double length;
+
+  Itinerary(this.longStart, this.latStart, this.longEnd, this.latEnd, this.name,
+      this.length);
+}
+```
+
+  - Second configuration:
+```dart
+@Nameof(coverageBehaviour: CoverageBehaviour.includeImplicit)
+class Itinerary {
+  @nameofIgnore
+  final double longStart;
+  
+  @nameofIgnore
+  final double latStart;
+
+  @nameofIgnore
+  final double longEnd;
+  
+  @nameofIgnore
+  final double latEnd;
+
+  final String name;
+  final double length;
+
+  Itinerary(this.longStart, this.latStart, this.longEnd, this.latEnd, this.name,
+      this.length);
+}
+```
+
+Output: 
+
+```dart
+/// Container for names of elements belonging to the [Itinerary] class
+abstract class NameofItinerary {
+  static const String className = 'Itinerary';
+
+  static const String fieldName = 'name';
+  static const String fieldLength = 'length';
+}
+```
+
+Take an attention for `coverageBehaviour` setting, `@nameofKey` and `@nameofIgnore` annotations. 
+If you do not set coverage, generator will use  `includeImplicit` setting by default.
+
+### Override names 
+If you want override name of element you can do it!
+Code:
+
+```dart
+@nameof
+class Ephemeral {
+  @NameofKey(name: 'AbRaCadabra')
+  String get flushLight => 'Purple';
+}
+```
+
+Generator output:
+```dart
+/// Container for names of elements belonging to the [Ephemeral] class
+abstract class NameofEphemeral {
+  static const String className = 'Ephemeral';
+
+  static const String constructor = '';
+
+  static const String propertyGetAbRaCadabra = 'AbRaCadabra';
+}
+```
+
+As can you see property was renamed. Output has `AbRaCadabra` not `flushLight`.
