@@ -46,6 +46,7 @@ class Sample extends BaseClass with VinilMixin {
 
   set setColor(int repr) {}
 
+  // ignore: unnecessary_getters_setters
   String get behind => _behind;
 
   set behind(String val) {
@@ -60,4 +61,31 @@ class Sample extends BaseClass with VinilMixin {
     _calculateAge();
     return 0;
   }
+}
+
+@Nameof(coverageBehaviour: CoverageBehaviour.includeImplicit)
+class Itinerary {
+  @nameofIgnore
+  final double longStart;
+
+  @nameofIgnore
+  final double latStart;
+
+  @nameofIgnore
+  final double longEnd;
+
+  @nameofIgnore
+  final double latEnd;
+
+  final String name;
+  final double length;
+
+  Itinerary(this.longStart, this.latStart, this.longEnd, this.latEnd, this.name,
+      this.length);
+}
+
+@nameof
+class Ephemeral {
+  @NameofKey(name: 'AbRaCadabra')
+  String get flushLight => 'Purple';
 }
