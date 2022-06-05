@@ -23,12 +23,14 @@ class NameofCodeProcessor {
   String _generateNames(NameofVisitor visitor) {
     StringBuffer buffer = StringBuffer();
 
-    final classContainerName = '_\$Nameof${visitor.className}';
+    final classContainerName = 'Nameof${visitor.className}';
 
-    buffer.writeln('class $classContainerName {');
-    buffer.writeln('const $classContainerName();');
+    buffer.writeln(
+        '/// Container for names of elements belonging to the [${visitor.className}] class');
+    buffer.writeln('abstract class $classContainerName {');
 
-    final className = 'final String className = \'${visitor.className}\';';
+    final className =
+        'static const String className = \'${visitor.className}\';';
 
     final constructorNames =
         _getCodeParts('constructor', visitor.constructors.values);
@@ -38,7 +40,7 @@ class NameofCodeProcessor {
     final functionNames = _getCodeParts('function', visitor.functions.values);
 
     final propertyNames = _getFilteredNames(visitor.properties.values).map((prop) =>
-        'final String property${(prop as PropertyInfo).propertyPrefix}${prop.name.capitalize().privatize()} = \'${prop.name}\';');
+        'static const String property${(prop as PropertyInfo).propertyPrefix}${prop.name.capitalize().privatize()} = \'${prop.name}\';');
 
     void writeCode(Iterable<String> codeLines) {
       if (codeLines.isNotEmpty) {
@@ -60,9 +62,6 @@ class NameofCodeProcessor {
 
     buffer.writeln('}');
 
-    buffer.writeln(
-        'const nameof${visitor.className.capitalize()} = $classContainerName();');
-
     return buffer.toString();
   }
 
@@ -81,6 +80,6 @@ class NameofCodeProcessor {
   Iterable<String> _getCodeParts(
       String elementType, Iterable<ElementInfo> elements) {
     return _getFilteredNames(elements).map((element) =>
-        'final String $elementType${element.scopePrefix}${element.name.capitalize().privatize()} = \'${element.name}\';');
+        'static const String $elementType${element.scopePrefix}${element.name.capitalize().privatize()} = \'${element.name}\';');
   }
 }
