@@ -2,19 +2,17 @@ import 'package:nameof_annotation/nameof_annotation.dart';
 import 'package:source_gen_test/annotations.dart';
 
 @ShouldGenerate(r'''
-class _$NameofModelTest {
-  const _$NameofModelTest();
-  final String className = 'ModelTest';
+/// Container for names of elements belonging to the [ModelTest] class
+abstract class NameofModelTest {
+  static const String className = 'ModelTest';
 
-  final String constructor = '';
+  static const String constructor = '';
 
-  final String fieldName = 'name';
-  final String fieldId = 'id';
+  static const String fieldName = 'name';
+  static const String fieldId = 'id';
 
-  final String functionBuildValue = 'buildValue';
+  static const String functionBuildValue = 'buildValue';
 }
-
-const nameofModelTest = _$NameofModelTest();
 ''')
 @nameof
 class ModelTest {
@@ -32,19 +30,17 @@ class ModelTest {
 }
 
 @ShouldGenerate(r'''
-class _$NameofModelTest2 {
-  const _$NameofModelTest2();
-  final String className = 'ModelTest2';
+/// Container for names of elements belonging to the [ModelTest2] class
+abstract class NameofModelTest2 {
+  static const String className = 'ModelTest2';
 
-  final String constructor = '';
+  static const String constructor = '';
 
-  final String fieldName = 'name';
-  final String fieldId = 'id';
+  static const String fieldName = 'name';
+  static const String fieldId = 'id';
 
-  final String propertyGetDescription = 'description';
+  static const String propertyGetDescription = 'description';
 }
-
-const nameofModelTest2 = _$NameofModelTest2();
 ''')
 @nameof
 class ModelTest2 {
@@ -58,14 +54,12 @@ class ModelTest2 {
 }
 
 @ShouldGenerate(r'''
-class _$NameofMixinTest3 {
-  const _$NameofMixinTest3();
-  final String className = 'MixinTest3';
+/// Container for names of elements belonging to the [MixinTest3] class
+abstract class NameofMixinTest3 {
+  static const String className = 'MixinTest3';
 
-  final String fieldStartUnixEpoch = '_startUnixEpoch';
+  static const String fieldStartUnixEpoch = '_startUnixEpoch';
 }
-
-const nameofMixinTest3 = _$NameofMixinTest3();
 ''')
 @Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
 mixin MixinTest3 {
@@ -77,17 +71,15 @@ mixin MixinTest3 {
 }
 
 @ShouldGenerate(r'''
-class _$NameofCinema {
-  const _$NameofCinema();
-  final String className = 'Cinema';
+/// Container for names of elements belonging to the [Cinema] class
+abstract class NameofCinema {
+  static const String className = 'Cinema';
 
-  final String constructor = '';
+  static const String constructor = '';
 
-  final String fieldStreet = 'street';
-  final String fieldValue = 'value';
+  static const String fieldStreet = 'street';
+  static const String fieldValue = 'value';
 }
-
-const nameofCinema = _$NameofCinema();
 ''')
 @nameof
 class Cinema {

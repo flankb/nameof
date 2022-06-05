@@ -5,22 +5,22 @@ import 'integration/models.dart';
 void main() {
   group('A group of tests for check generation code', () {
     test('test generate code for model one', () {
-      expect(nameofModelOne.className, 'ModelOne');
-      expect(nameofModelOne.constructor, '');
-      expect(nameofModelOne.fieldName, 'name');
-      expect(nameofModelOne.fieldId, 'id');
-      expect(nameofModelOne.functionBuildValue, 'buildValue');
+      expect(NameofModelOne.className, 'ModelOne');
+      expect(NameofModelOne.constructor, '');
+      expect(NameofModelOne.fieldName, 'name');
+      expect(NameofModelOne.fieldId, 'id');
+      expect(NameofModelOne.functionBuildValue, 'buildValue');
     });
 
     test('test generate code for base class', () {
-      expect(nameofBaseClass.className, 'BaseClass');
-      expect(nameofBaseClass.fieldPrice, 'price');
-      expect(nameofBaseClass.constructor, '');
+      expect(NameofBaseClass.className, 'BaseClass');
+      expect(NameofBaseClass.fieldPrice, 'price');
+      expect(NameofBaseClass.constructor, '');
     });
 
     test('test generate code for mixin', () {
-      expect(nameofMixinOne.propertyGetHameleon, 'hameleon');
-      expect(nameofMixinOne.className, 'MixinOne');
+      expect(NameofMixinOne.propertyGetHameleon, 'hameleon');
+      expect(NameofMixinOne.className, 'MixinOne');
     });
   });
 }
