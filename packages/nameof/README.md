@@ -211,3 +211,50 @@ abstract class NameofEphemeral {
 ```
 
 As can you see property was renamed. Output has `AbRaCadabra` not `flushLight`.
+
+## Configurations
+
+Nameof offers various options to customize the generated code. For example, you
+may want to change coverage behaviour of model.
+
+To do so, there are two possibilities:
+
+### Changing the behavior for a specific model
+
+If you want to customize the generated code for only one specific class,
+you can do so by using annotation setting:
+
+```dart
+@Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
+class Empoyee {...}
+```
+
+### Changing the behavior for the entire project
+
+Instead of applying your modification to a single class, you may want to apply it to
+all Nameof models at the same time.
+
+You can do so by customizing a file called `build.yaml`  
+This file is an optional configuration file that should be placed next to your `pubspec.yaml`:
+
+```
+project_folder/
+  pubspec.yaml
+  build.yaml
+  lib/
+```
+
+There, you will be able to change the same options as the options found in `@Nameof` (see above)
+by writing:
+
+```yaml
+targets:
+  $default:
+    builders:
+      nameof:
+        options:
+          coverage: includeImplicit
+          
+```
+
+Two settings for coverage is available: `includeImplicit` (default) and `excludeImplicit`
