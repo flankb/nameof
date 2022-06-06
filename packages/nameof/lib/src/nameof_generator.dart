@@ -37,18 +37,17 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
   NameofOptions _parseConfig(ConstantReader annotation) {
     final coverageConfigString = config['coverage']?.toString();
 
-    final coverageConfig = CoverageBehaviour.values
+    final coverageConfig = Coverage.values
         .firstWhereOrNull((cb) => coverageConfigString == cb.toShortString());
 
     final coverageAnnotation = enumValueForDartObject(
-      annotation.read('coverageBehaviour'),
-      CoverageBehaviour.values,
+      annotation.read('coverage'),
+      Coverage.values,
     );
 
     return NameofOptions(
-        coverage: coverageAnnotation ??
-            coverageConfig ??
-            CoverageBehaviour.includeImplicit,
+        coverage:
+            coverageAnnotation ?? coverageConfig ?? Coverage.includeImplicit,
         scope: NameofScope.onlyPublic);
   }
 

@@ -32,7 +32,7 @@ class ModelOne extends BaseClass with MixinOne {
   }
 }
 
-@Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
+@Nameof(coverage: Coverage.excludeImplicit)
 mixin MixinOne {
   final int vinilNumber = 124;
 

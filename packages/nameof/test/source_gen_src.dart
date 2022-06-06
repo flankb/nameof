@@ -61,7 +61,7 @@ abstract class NameofMixinTest3 {
   static const String fieldStartUnixEpoch = '_startUnixEpoch';
 }
 ''')
-@Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
+@Nameof(coverage: Coverage.excludeImplicit)
 mixin MixinTest3 {
   final String name = 'Mixin';
   final int id = 0;

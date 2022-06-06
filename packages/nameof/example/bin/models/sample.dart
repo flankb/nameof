@@ -28,7 +28,7 @@ class Car {
       : this(price, weigth, year, 'Sedan');
 }
 
-@Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
+@Nameof(coverage: Coverage.excludeImplicit)
 class Sample extends BaseClass with VinilMixin {
   final String name;
   String _behind = '';
@@ -63,7 +63,7 @@ class Sample extends BaseClass with VinilMixin {
   }
 }
 
-@Nameof(coverageBehaviour: CoverageBehaviour.includeImplicit)
+@Nameof(coverage: Coverage.includeImplicit)
 class Itinerary {
   @nameofIgnore
   final double longStart;

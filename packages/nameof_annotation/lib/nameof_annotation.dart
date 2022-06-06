@@ -6,9 +6,9 @@ library nameof_annotation;
 /// Annotation for generate names for code entities
 class Nameof {
   /// This setting response for including and excluding elements of class
-  final CoverageBehaviour? coverageBehaviour;
+  final Coverage? coverage;
 
-  const Nameof({this.coverageBehaviour});
+  const Nameof({this.coverage});
 }
 
 ///  Annotation for ignore inner elements of class
@@ -38,7 +38,7 @@ enum NameofScope {
 }
 
 /// Behaviour for generating nameof code
-enum CoverageBehaviour {
+enum Coverage {
   /// Include all elements, even not marked with annotation [NameofKey]
   includeImplicit,
 
