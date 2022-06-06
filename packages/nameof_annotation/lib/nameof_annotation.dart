@@ -5,6 +5,7 @@ library nameof_annotation;
 
 /// Annotation for generate names for code entities
 class Nameof {
+  /// This setting response for including and excluding elements of class
   final CoverageBehaviour? coverageBehaviour;
 
   const Nameof({this.coverageBehaviour});
@@ -15,7 +16,9 @@ class NameofIgnore {
   const NameofIgnore();
 }
 
+///  Annotation for tagging inner elements of class
 class NameofKey {
+  /// Set this for override name of element
   final String? name;
 
   const NameofKey({this.name});
