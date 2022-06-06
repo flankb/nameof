@@ -13,7 +13,11 @@ Sometimes there is a need to access the names of programming language entities, 
   - [Install](#install)
 
   - [Run the generator](#run-the-generator)
-  - [Using Nameof](#creating-a-model-using-Nameof)
+  - [Using Nameof](#using-nameof)
+    - [Simple usage](#simple-usage)
+    - [Models coverage](#models-coverage)
+    - [Override names](#override-names)
+    - [NameofKey targets](#nameofkey-targets)
  
   - [Configurations](#configurations)
     - [Changing the behavior for a specific model](#changing-the-behavior-for-a-specific-model)
@@ -149,7 +153,7 @@ class Itinerary {
 
   - Second configuration:
 ```dart
-@Nameof(coverageBehaviour: CoverageBehaviour.includeImplicit)
+@Nameof(coverage: Coverage.includeImplicit)
 class Itinerary {
   @nameofIgnore
   final double longStart;
@@ -183,8 +187,8 @@ abstract class NameofItinerary {
 }
 ```
 
-Take an attention for `coverageBehaviour` setting, `@nameofKey` and `@nameofIgnore` annotations. 
-If you do not set coverage, generator will use `includeImplicit` setting by default.
+Take an attention for `coverage` setting, `@nameofKey` and `@nameofIgnore` annotations. 
+If you do not set coverage, generator will use  `includeImplicit` setting by default.
 
 ### Override names 
 If you want override name of element you can do it!
@@ -212,6 +216,10 @@ abstract class NameofEphemeral {
 
 As can you see property was renamed. Output has `AbRaCadabra` not `flushLight`.
 
+### NameofKey targets
+
+`@NameofKey` annotatition applyed for public fields, methods, properties and constructors.
+
 ## Configurations
 
 Nameof offers various options to customize the generated code. For example, you
@@ -225,7 +233,7 @@ If you want to customize the generated code for only one specific class,
 you can do so by using annotation setting:
 
 ```dart
-@Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
+@Nameof(coverage: Coverage.excludeImplicit)
 class Empoyee {...}
 ```
 
