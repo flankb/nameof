@@ -128,7 +128,7 @@ Also you may to use `nameof` annotation for abstract *classes* and *mixins*.
 You can have very precision setting of coverage of model's members with use coverage settings and `@NameofIgnore` annotation. For example two next configurations will lead to one output.
 - First configuration:
 ```dart
-@Nameof(coverageBehaviour: CoverageBehaviour.excludeImplicit)
+@Nameof(coverage: Coverage.excludeImplicit)
 class Itinerary {
   final double longStart;
   final double latStart;
@@ -184,7 +184,7 @@ abstract class NameofItinerary {
 ```
 
 Take an attention for `coverageBehaviour` setting, `@nameofKey` and `@nameofIgnore` annotations. 
-If you do not set coverage, generator will use  `includeImplicit` setting by default.
+If you do not set coverage, generator will use `includeImplicit` setting by default.
 
 ### Override names 
 If you want override name of element you can do it!
