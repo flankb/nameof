@@ -40,7 +40,7 @@ class NameofCodeProcessor {
     final functionNames = _getCodeParts('function', visitor.functions.values);
 
     final propertyNames = _getFilteredNames(visitor.properties.values).map((prop) =>
-        'static const String property${(prop as PropertyInfo).propertyPrefix}${prop.name.capitalize().privatize()} = \'${prop.name}\';');
+        'static const String property${(prop as PropertyInfo).propertyPrefix}${prop.originalName.capitalize().privatize()} = \'${prop.name}\';');
 
     void writeCode(Iterable<String> codeLines) {
       if (codeLines.isNotEmpty) {
@@ -79,6 +79,6 @@ class NameofCodeProcessor {
   Iterable<String> _getCodeParts(
       String elementType, Iterable<ElementInfo> elements) {
     return _getFilteredNames(elements).map((element) =>
-        'static const String $elementType${element.scopePrefix}${element.name.capitalize().privatize()} = \'${element.name}\';');
+        'static const String $elementType${element.scopePrefix}${element.originalName.capitalize().privatize()} = \'${element.name}\';');
   }
 }
