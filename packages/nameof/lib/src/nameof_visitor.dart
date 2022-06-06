@@ -48,8 +48,7 @@ class NameofVisitor extends SimpleElementVisitor<void> {
     functions[element.name] = _getElementInfo(element);
   }
 
-  ElementInfo _getElementInfo(Element element,
-      {@Deprecated("Move to ParameterInfo or Remove") String? ownerName}) {
+  ElementInfo _getElementInfo(Element element) {
     if (element.name == null) {
       throw UnsupportedError('Element does not have a name!');
     }
@@ -71,7 +70,6 @@ class NameofVisitor extends SimpleElementVisitor<void> {
         name: name,
         isPrivate: isPrivate,
         isAnnotated: isAnnotated,
-        ownerName: ownerName,
         isIgnore: isIgnore);
   }
 }
