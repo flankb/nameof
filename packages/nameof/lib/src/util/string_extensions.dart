@@ -5,10 +5,10 @@ extension StringExtension on String {
     return '${this[0].toUpperCase()}${substring(1)}';
   }
 
-  /// Remove underscore
+  /// Remove underscore and capitalize first letter without underscore
   String privatize() {
     if (isNotEmpty && this[0] == '_') {
-      return substring(1).capitalize(); // TODO Remove capitalize()
+      return substring(1).capitalize();
     }
 
     return this;
