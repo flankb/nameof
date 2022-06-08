@@ -1,7 +1,7 @@
 
 # Motivation
 
-Sometimes there is a need to access the names of programming language entities, such as methods, properties, constructors, etc. Unfortunately Flutter has not reflection mechanism. But there is code generation! It is all you need for access to names of code entities with this package.
+Sometimes there is a need to access the names of programming language entities, such as methods, properties, constructors, etc. Unfortunately, Flutter does not have a reflection mechanism designed for this purpose. But there is code generation! It is all you need for access to names of code entities with this package.
 
 # Index
 
@@ -26,8 +26,8 @@ Sometimes there is a need to access the names of programming language entities, 
 # How to use
 
 ## Install
-To use [Nameof], you will need your typical [build_runner]/code-generator setup.\
-First, install [build_runner] and [Nameof] by adding them to your `pubspec.yaml` file:
+To use `Nameof`, you will need your typical [build_runner](https://pub.dev/packages/build_runner) code-generator setup.\
+First, install [build_runner](https://pub.dev/packages/build_runner) and `Nameof` by adding them to your `pubspec.yaml` file:
 
 If you are using creating a Flutter project:
 
@@ -48,8 +48,8 @@ $ dart pub add --dev nameof
 This installs three packages:
 
 - [build_runner](https://pub.dev/packages/build_runner), the tool to run code-generators
-- [nameof], the code generator
-- [nameof_annotation](https://pub.dev/packages/nameof_annotation), a package containing annotations for [Nameof].
+- [nameof](https://pub.dev/packages/nameof), the code generator
+- [nameof_annotation](https://pub.dev/packages/nameof_annotation), a package containing annotations for `Nameof`.
 
 ## Run the generator
 
@@ -65,10 +65,10 @@ For Flutter projects, you can also run:
 flutter pub run build_runner build
 ```
 
-Note that like most code-generators, [nameof] will need you to both import the annotation ([nameof_annotation])
+Note that like most code-generators, [nameof](https://pub.dev/packages/nameof) will need you to both import the annotation ([nameof_annotation](https://pub.dev/packages/nameof_annotation))
 and use the `part` keyword on the top of your files.
 
-As such, a file that wants to use [nameof] will start with:
+As such, a file that wants to use [nameof](https://pub.dev/packages/nameof) will start with:
 
 ```dart
 import 'package:nameof_annotation/nameof_annotation.dart';
@@ -170,6 +170,7 @@ class Itinerary {
   final String name;
   final double length;
 
+  @nameofIgnore
   Itinerary(this.longStart, this.latStart, this.longEnd, this.latEnd, this.name,
       this.length);
 }
@@ -210,7 +211,7 @@ abstract class NameofEphemeral {
 
   static const String constructor = '';
 
-  static const String propertyGetAbRaCadabra = 'AbRaCadabra';
+  static const String propertyGetFlushLight = 'AbRaCadabra';
 }
 ```
 
