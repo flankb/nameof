@@ -1,9 +1,8 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// Library
 library nameof_annotation;
 
 /// Annotation for generate names for code entities
+/// Tag class or mixin with this annotation
 class Nameof {
   /// This setting response for including and excluding elements of class
   final Coverage? coverage;
@@ -11,12 +10,12 @@ class Nameof {
   const Nameof({this.coverage});
 }
 
-///  Annotation for ignore inner elements of class
+///  Annotation for ignore inner elements of class (or mixin)
 class NameofIgnore {
   const NameofIgnore();
 }
 
-///  Annotation for tagging inner elements of class
+///  Annotation for tagging inner elements of class (or mixin)
 class NameofKey {
   /// Set this for override name of element
   final String? name;
@@ -24,8 +23,13 @@ class NameofKey {
   const NameofKey({this.name});
 }
 
+/// Default instanse of [Nameof] annotation
 const nameof = Nameof();
+
+/// Default instanse of [NameofKey] annotation
 const nameofKey = NameofKey();
+
+/// Default instanse of [NameofIgnore] annotation
 const nameofIgnore = NameofIgnore();
 
 /// Rule for including inner elements

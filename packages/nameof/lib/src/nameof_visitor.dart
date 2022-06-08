@@ -7,6 +7,7 @@ import 'package:nameof_annotation/nameof_annotation.dart';
 
 import 'model/property_info.dart';
 
+/// Class for collect info about inner elements of class (or mixin)
 class NameofVisitor extends SimpleElementVisitor<void> {
   late String className;
 
