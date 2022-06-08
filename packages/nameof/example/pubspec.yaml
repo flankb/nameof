@@ -1,5 +1,5 @@
 name: example
-description: A simple command-line application.
+description: Example for nameof package
 version: 1.0.0
 # homepage: https://www.example.com
 
@@ -8,11 +8,9 @@ environment:
 
 
 dependencies:
-  nameof_annotation:
-    path: ../../nameof_annotation/
+  nameof_annotation: ^0.1.0
 
 dev_dependencies:
   lints: ^1.0.0
   build_runner:
-  nameof:
-    path: ../
+  nameof: ^0.1.0
