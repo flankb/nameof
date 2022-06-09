@@ -58,7 +58,7 @@ class ModelTest2 {
 abstract class NameofMixinTest3 {
   static const String className = 'MixinTest3';
 
-  static const String fieldStartUnixEpoch = '_startUnixEpoch';
+  static const String fieldYear = '_startUnixEpoch';
 }
 ''')
 @Nameof(coverage: Coverage.excludeImplicit)
