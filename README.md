@@ -1,29 +1,19 @@
-# README #
+Provides the generator for  Dart class member's names, such as fields, properties, methods, constructors.
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## nameof 
 
-### What is this repository for? ###
+- Package: <https://pub.dev/packages/nameof>
+- [Source code](https://github.com/flankb/nameof)
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+The core package providing Generators for `Nameof` tasks.
 
-### How do I get set up? ###
+Import it into your pubspec `dev_dependencies` section.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## nameof_annotation
 
-### Contribution guidelines ###
+- Package: <https://pub.dev/packages/nameof_annotation>
+- [Source code](https://github.com/flankb/nameof)
 
-* Writing tests
-* Code review
-* Other guidelines
+The annotation package which has no dependencies.
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Import it into your pubspec `dependencies` section.
