@@ -4,7 +4,6 @@ import 'package:nameof/src/nameof_code_processor.dart';
 import 'package:nameof/src/util/enum_extensions.dart';
 import 'package:nameof_annotation/nameof_annotation.dart';
 import 'package:source_gen/source_gen.dart';
-import 'package:collection/collection.dart';
 import 'model/options.dart';
 import 'nameof_visitor.dart';
 
@@ -37,8 +36,12 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
   NameofOptions _parseConfig(ConstantReader annotation) {
     final coverageConfigString = config['coverage']?.toString();
 
-    final coverageConfig = Coverage.values
-        .firstWhereOrNull((cb) => coverageConfigString == cb.toShortString());
+    bool covTest(Coverage coverage) =>
+        coverageConfigString == coverage.toShortString();
+
+    final coverageConfig = Coverage.values.any(covTest)
+        ? Coverage.values.firstWhere(covTest)
+        : null;
 
     final coverageAnnotation = enumValueForDartObject(
       annotation.read('coverage'),
