@@ -1,4 +1,5 @@
 .idea/
 *.iml
 build/
-#*.nameof.dart
+*.nameof.dart
+!nameof.dart
