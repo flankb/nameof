@@ -67,7 +67,7 @@ class NameofVisitor extends SimpleElementVisitor<void> {
             : element.name)!
         .cleanFromServiceSymbols();
 
-    String originalName = element.name!;
+    String originalName = element.name!.cleanFromServiceSymbols();
 
     return ElementInfo(
         name: name,

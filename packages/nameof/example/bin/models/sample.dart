@@ -22,6 +22,10 @@ class Car {
   final int year;
   final String model;
 
+  int get moto => 0;
+
+  set moto(int repr) {}
+
   Car(this.price, this.weigth, this.year, this.model);
 
   Car.sedan(double price, double weigth, int year)
@@ -44,7 +48,7 @@ class Sample extends BaseClass with VinilMixin {
   @NameofKey(name: '_abracadabra')
   String get getColor => 'red';
 
-  set setColor(int repr) {}
+  set setColor(String repr) {}
 
   // ignore: unnecessary_getters_setters
   String get behind => _behind;
