@@ -1,3 +1,6 @@
+## 0.1.4
+- Fix nameof ignore for props
+
 ## 0.1.3
 - Fix generate setter's name with wrong '=' char
 

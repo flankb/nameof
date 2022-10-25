@@ -1,6 +1,6 @@
 name: nameof
 description: Generator for  Dart class member's names, such as fields, properties, methods, constructors 
-version: 0.1.3
+version: 0.1.4
 homepage: https://github.com/flankb/nameof
 
 environment:

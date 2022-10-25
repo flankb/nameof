@@ -24,6 +24,7 @@ class Car {
 
   int get moto => 0;
 
+  @NameofIgnore()
   set moto(int repr) {}
 
   Car(this.price, this.weigth, this.year, this.model);
