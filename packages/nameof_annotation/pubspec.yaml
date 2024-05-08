@@ -1,10 +1,10 @@
 name: nameof_annotation
 description: Annotations for nameof package, that is Generator for  Dart class member's names, such as fields, properties, methods, constructors 
-version: 0.2.0
+version: 0.2.1
 homepage: https://github.com/flankb/nameof
 
 environment:
-  sdk: ^3.0.0
+  sdk: '>=2.16.0 <4.0.0'
 
 # dependencies:
 #   path: ^1.8.0

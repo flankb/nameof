@@ -1,3 +1,11 @@
+## 0.2.2
+
+- Expand SDK version to '>=2.16.0 <4.0.0'
+
+## 0.2.1
+
+- Restore fixes
+
 ## 0.2.0
 
 - Bump SDK version to 3.0.0, and update analyzer
