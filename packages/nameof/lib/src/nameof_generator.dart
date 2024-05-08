@@ -15,8 +15,8 @@ class NameofGenerator extends GeneratorForAnnotation<Nameof> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    if (element.kind != ElementKind.CLASS) {
-      throw UnsupportedError("This is not a class!");
+    if (element.kind != ElementKind.CLASS && element.kind.name != 'MIXIN') {
+      throw UnsupportedError("This is not a class (or mixin)!");
     }
 
     final options = _parseConfig(annotation);
