@@ -9,12 +9,14 @@ class PropertyInfo extends ElementInfo {
     required String originalName,
     required bool isPrivate,
     required bool isAnnotated,
+    required bool isIgnore,
     required this.isSetter,
     required this.isGetter,
   })  : assert(isGetter ^ isSetter),
         super(
             name: name,
             originalName: originalName,
+            isIgnore: isIgnore,
             isPrivate: isPrivate,
             isAnnotated: isAnnotated);
 
@@ -23,6 +25,7 @@ class PropertyInfo extends ElementInfo {
     return PropertyInfo(
         name: based.name,
         originalName: based.originalName,
+        isIgnore: based.isIgnore,
         isPrivate: based.isPrivate,
         isAnnotated: based.isAnnotated,
         isGetter: isGetter,

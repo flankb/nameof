@@ -2,6 +2,12 @@
 
 - Bump SDK version to 3.0.0, and update analyzer
 
+## 0.1.4
+- Fix nameof ignore for props
+
+## 0.1.3
+- Fix generate setter's name with wrong '=' char
+
 ## 0.1.2
 
 - Fix analyzer version
