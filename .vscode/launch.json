@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "nameof",
+            "cwd": "packages\\nameof",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "nameof_annotation",
+            "cwd": "packages\\nameof_annotation",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "example",
+            "cwd": "packages\\nameof\\example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "Debug Nameof Generator",
+            "cwd": "packages\\nameof\\example",
+            "request": "launch",
+            "program": ".dart_tool/build/entrypoint/build.dart",
+            "type": "dart",
+            "args": ["build", "--delete-conflicting-outputs"]
+        } 
+    ]
+}
